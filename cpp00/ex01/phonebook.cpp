@@ -71,7 +71,7 @@ int searchPhonebook(PhoneBook& phonebook)
     }
     const Contact& contact = phonebook.contacts[index - 1];
     std::cout 
-        << std::right << "First Name:    " << contact.firstName << "\n"
+        << std::right << "First Name:      " << contact.firstName << "\n"
         << std::right << "Last Name:       " << contact.lastName << "\n"
         << std::right << "Nickname:        " << contact.nickname << "\n"
         << std::right << "Phone Number:    " << contact.phoneNumber << "\n"

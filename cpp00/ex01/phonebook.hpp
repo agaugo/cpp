@@ -47,9 +47,9 @@ class PhoneBook
             const Contact& contact = contacts[i];
             std::cout
                 << std::setw(10) << std::right << i + 1 << "|"
-                << std::setw(10) << std::right << contact.firstName.substr(0,9) << "|"
-                << std::setw(10) << std::right << contact.lastName.substr(0,9) << "|"
-                << std::setw(10) << std::right << contact.nickname.substr(0,9) << "\n";
+                << std::setw(10) << std::right << (contact.firstName.length() > 9 ? contact.firstName.substr(0,8) + "." : contact.firstName.substr(0,9)) << "|"
+                << std::setw(10) << std::right << (contact.lastName.length() > 9 ? contact.lastName.substr(0,8) + "." : contact.lastName.substr(0,9)) << "|" 
+                << std::setw(10) << std::right << (contact.nickname.length() > 9 ? contact.nickname.substr(0,8) + "." : contact.nickname.substr(0,9)) << "\n";
         }
     }
 };
