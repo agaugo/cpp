@@ -26,7 +26,10 @@ class Phonebook
     std::vector <Contact> contacts;
 
     void addContact(const Contact& newContact) {
-        contacts.push_back(newContact);
+        if (contacts.size() >= 8)
+            contacts[0] = newContact;
+        else
+            contacts.push_back(newContact);
     }
 
     void displayContacts()
