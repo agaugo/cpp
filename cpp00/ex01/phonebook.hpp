@@ -19,7 +19,7 @@ class Contact
 };
 
 
-class Phonebook
+class PhoneBook
 {
     public:
     

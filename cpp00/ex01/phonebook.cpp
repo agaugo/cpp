@@ -5,7 +5,7 @@
 #include <sstream>
 #include "phonebook.hpp"
 
-int addContact(Phonebook& phonebook)
+int addContact(PhoneBook& phonebook)
 {
     std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
 
@@ -55,7 +55,7 @@ int addContact(Phonebook& phonebook)
     return (1);
 }
 
-int searchPhonebook(Phonebook& phonebook)
+int searchPhonebook(PhoneBook& phonebook)
 {
     std::string input;
     std::size_t index;
@@ -71,25 +71,32 @@ int searchPhonebook(Phonebook& phonebook)
     }
     const Contact& contact = phonebook.contacts[index - 1];
     std::cout 
-        << std::right << "First Name: " << contact.firstName << "\n"
-        << std::right << "Last Name: " << contact.lastName << "\n"
-        << std::right << "Nickname: " << contact.nickname << "\n"
-        << std::right << "Phone Number: " << contact.phoneNumber << "\n"
-        << std::right << "Darkest Secret:" << contact.darkestSecret << "\n";
+        << std::right << "First Name:    " << contact.firstName << "\n"
+        << std::right << "Last Name:       " << contact.lastName << "\n"
+        << std::right << "Nickname:        " << contact.nickname << "\n"
+        << std::right << "Phone Number:    " << contact.phoneNumber << "\n"
+        << std::right << "Darkest Secret:  " << contact.darkestSecret << "\n";
     
     return (0);
 }
 
 int	main(void)
 {
-    Phonebook phonebook;
+    PhoneBook phonebook;
 
     std::string input;
     std::cout << "Welcome to the Phonebook!" << std::endl;
     std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
     
-    while (std::getline(std::cin, input))
+    while (true)
     {
+        std::getline(std::cin, input);
+
+        if (std::cin.fail()) {
+            std::cout << "\nExiting Program.\n";
+            break ;
+        }
+
         if (input == "EXIT")
             break;
         else if (input == "ADD")
