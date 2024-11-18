@@ -7,5 +7,7 @@ int main(void) {
     zombie->announce();
     delete zombie;
 
+    randomChump("Froonk");
+    
     return (0);
 }
