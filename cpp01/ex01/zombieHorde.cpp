@@ -1,30 +1,23 @@
-NAME = zombie
+#include "Zombie.hpp"
+#include <string>
+#include <iostream>
+#include <sstream>
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+std::string ft_itos(int x){
+	std::stringstream ss;
+	ss << x;
+	return ss.str();
+}
 
-SRCS = main.cpp \
-	Zombie.cpp \
-	newZombie.cpp \
-	randomChump.cpp \
-	zombieHorde.cpp
+Zombie* zombieHorde( int N, std::string name ) {
+	if (N <= 0) return NULL;
 
-OBJS = $(SRCS:.cpp=.o)
+	Zombie *horde = new Zombie[N];
 
-all: $(NAME)
+	for (int i = 0; i < N; ++i) {
+		horde[i].setName(name + ft_itos(i + 1));
+		horde[i].announce();
+	}
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+	return (horde);
+}
