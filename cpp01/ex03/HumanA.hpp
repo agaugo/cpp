@@ -10,7 +10,8 @@ class HumanA {
         Weapon& weapon;
     public:
         HumanA(std::string name, Weapon &weapon);
-        void setWeapon(Weapon &weapon);
+        void setType(Weapon &weapon);
         void attack();
-}
+};
+
 #endif
