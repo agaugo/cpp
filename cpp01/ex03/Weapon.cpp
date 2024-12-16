@@ -17,7 +17,7 @@ void Weapon::setType(const std::string& type) {
 
 //  this->type , i dont know whats going on here.
 
-const std::string& Weapon::getType() const{
+const std::string& Weapon::getType() const {
     return type;
 };
 
