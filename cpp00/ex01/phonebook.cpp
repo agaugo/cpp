@@ -65,18 +65,18 @@ int searchPhonebook(PhoneBook& phonebook)
     std::getline(std::cin, input);
 
     std::stringstream(input) >> index;
-    if (index < 1 || index > phonebook.contacts.size()) {
-        std::cout << "Invalid index. Enter a number between 1 and " << phonebook.contacts.size() << "\n";
-        return (-1);  
+    if (index < 1 || index > phonebook.getTotal()) { // CHANGE: Use getter
+        std::cout << "Invalid index. Enter a number between 1 and " << phonebook.getTotal() << "\n";
+        return (-1);
     }
-    const Contact& contact = phonebook.contacts[index - 1];
-    std::cout 
-        << std::right << "First Name:      " << contact.firstName << "\n"
-        << std::right << "Last Name:       " << contact.lastName << "\n"
-        << std::right << "Nickname:        " << contact.nickname << "\n"
-        << std::right << "Phone Number:    " << contact.phoneNumber << "\n"
-        << std::right << "Darkest Secret:  " << contact.darkestSecret << "\n";
-    
+    const Contact& contact = phonebook.getContact(index - 1); // CHANGE: Use getter
+    std::cout
+        << "First Name: " << contact.getFirstName() << "\n"    // CHANGE: Use getters
+        << "Last Name: " << contact.getLastName() << "\n"
+        << "Nickname: " << contact.getNickname() << "\n"
+        << "Phone Number: " << contact.getPhoneNumber() << "\n"
+        << "Darkest Secret: " << contact.getDarkestSecret() << "\n";
+            
     return (0);
 }
 

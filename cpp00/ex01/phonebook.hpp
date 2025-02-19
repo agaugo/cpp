@@ -6,50 +6,75 @@
 
 class Contact
 {
-    public:
+    private:
+        std::string firstName;
+        std::string lastName;
+        std::string nickname;
+        std::string phoneNumber;
+        std::string darkestSecret;
 
-    std::string firstName;
-    std::string lastName;
-    std::string nickname;
-    std::string phoneNumber;
-    std::string darkestSecret;
+    public:
+    Contact() {}
 
     Contact(std::string fn, std::string ln, std::string nn, std::string pn, std::string ds)
-    : firstName(fn), lastName(ln), nickname(nn), phoneNumber(pn), darkestSecret(ds) {}
+        : firstName(fn), lastName(ln), nickname(nn), phoneNumber(pn), darkestSecret(ds) {}
+
+    std::string getFirstName() const { return firstName; }
+    std::string getLastName() const {return lastName; }
+    std::string getNickname() const {return nickname; }
+    std::string getPhoneNumber() const { return phoneNumber; }
+    std::string getDarkestSecret() const {return darkestSecret; }
 };
 
 
 class PhoneBook
 {
+    private:
+        Contact contacts[8];
+        int currentIndex;
+        int totalContacts;
+
     public:
+        PhoneBook() : currentIndex(0), totalContacts(0) {}
+
+        void addContact(const Contact& newContact) {
+            contacts[currentIndex] = newContact;
+            currentIndex = (currentIndex + 1) % 8; // >> changes the first one
+            if (totalContacts < 8)
+                totalContacts++;
+        }
     
-    std::vector <Contact> contacts;
+        void displayContacts() {
+            if (totalContacts == 0) {
+                std::cout << "Phonebook is empty.\n";
+                return;
+            }
+            std::cout << std::setw(10) << std::right << "index" << "|"
+                << std::setw(10) << std::right << "first name" << "|"
+                << std::setw(10) << std::right << "last name" << "|"
+                << std::setw(10) << std::right << "nickname" << "\n";
+            std::cout << std::string(44, '-') << std::endl;
+            for (int i = 0; i < totalContacts; ++i) {
+            std::string fname = contacts[i].getFirstName();
+            std::string lname = contacts[i].getLastName();
+            std::string nname = contacts[i].getNickname();
 
-    void addContact(const Contact& newContact) {
-        if (contacts.size() >= 8)
-            contacts[0] = newContact;
-        else
-            contacts.push_back(newContact);
+            if (fname.length() > 10)
+                fname = fname.substr(0, 9) + ".";
+            if (lname.length() > 10)
+                lname = lname.substr(0, 9) + ".";
+            if (nname.length() > 10)
+                nname = nname.substr(0, 9) + ".";
+
+            std::cout << std::setw(10) << std::right << i + 1 << "|"
+                << std::setw(10) << std::right << fname << "|"
+                << std::setw(10) << std::right << lname << "|"
+                << std::setw(10) << std::right << nname << std::endl;
+            }
+        }
+    const Contact& getContact(int index) const { // CHANGE: Added getter
+        return contacts[index];
     }
 
-    void displayContacts()
-    {
-        if (contacts.empty()) {
-            std::cout << "Phonebook is empty. \n";
-            return ;
-        }
-
-        std::cout << "PHONEBOOK:\n";
-        std::cout << "     index|first name| last name|  nickname\n";
-
-        for (size_t i = 0; i < contacts.size(); ++i)
-        {
-            const Contact& contact = contacts[i];
-            std::cout
-                << std::setw(10) << std::right << i + 1 << "|"
-                << std::setw(10) << std::right << (contact.firstName.length() > 9 ? contact.firstName.substr(0,8) + "." : contact.firstName.substr(0,9)) << "|"
-                << std::setw(10) << std::right << (contact.lastName.length() > 9 ? contact.lastName.substr(0,8) + "." : contact.lastName.substr(0,9)) << "|" 
-                << std::setw(10) << std::right << (contact.nickname.length() > 9 ? contact.nickname.substr(0,8) + "." : contact.nickname.substr(0,9)) << "\n";
-        }
-    }
+    size_t getTotal() const { return totalContacts; } // CHANGE: Added getter
 };
