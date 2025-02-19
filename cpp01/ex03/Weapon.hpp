@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <iostream>
 
 class Weapon {                                          //  Declaring Class named Weapon
     private:                                            //  Access specifier is private. Meaning it is only accessible within the class itself

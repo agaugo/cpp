@@ -37,14 +37,16 @@ class PhoneBook
     public:
         PhoneBook() : currentIndex(0), totalContacts(0) {}
 
-        void addContact(const Contact& newContact) {
+        void addContact(const Contact& newContact)
+        {
             contacts[currentIndex] = newContact;
             currentIndex = (currentIndex + 1) % 8; // >> changes the first one
             if (totalContacts < 8)
                 totalContacts++;
         }
     
-        void displayContacts() {
+        void displayContacts()
+        {
             if (totalContacts == 0) {
                 std::cout << "Phonebook is empty.\n";
                 return;
@@ -72,7 +74,7 @@ class PhoneBook
                 << std::setw(10) << std::right << nname << std::endl;
             }
         }
-    const Contact& getContact(int index) const { // CHANGE: Added getter
+    const Contact& getContact(int index) const {
         return contacts[index];
     }
 
