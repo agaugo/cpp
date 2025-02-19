@@ -6,4 +6,6 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    replaceFile replacer(argv[1], argv[2], argv[3]);
+    return replacer.replace();
 }
