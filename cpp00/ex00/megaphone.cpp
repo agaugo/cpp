@@ -2,19 +2,17 @@
 #include <iostream>
 #include <string>
 
-int	main(int argc, char **argv)
-{
+int	main(int argc, char **argv) {
+	std::string output;
+
 	if (argc == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-	else
-	{
-		std::string output;
-		for (int i = 1; i < argc; ++i)
-			output += argv[i];
-		int y = -1;
-		while (output[++y] != '\0')
-			output[y] = std::toupper(output[y]);
+	else {
+		for (int y = 1; argv[y]; ++y)
+			output = output + argv[y];
+		for (int i = 0; output[i]; ++i)
+			output[i] = std::toupper(output[i]);
 		std::cout << output << std::endl;
 	}
-	return 0;
+	return (0);
 }
